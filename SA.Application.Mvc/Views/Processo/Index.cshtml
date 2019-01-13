@@ -1,0 +1,53 @@
+﻿@model IList<SA.Service.ViewModels.ProcessoViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Processos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <div class="form-group">
+        <span>
+            <a class="btn btn-default" asp-area="" asp-controller="Processo" asp-action="SumActive">Soma</a>
+        </span>
+        <span>
+            <a class="btn btn-default" asp-area="" asp-controller="Processo" asp-action="Average">Media</a>
+        </span>
+        <span>
+            <a class="btn btn-default" asp-area="" asp-controller="Processo" asp-action="NumberProcessValueAbove">Número de processos acima de:</a>
+        </span>
+        <span>
+            <a class="btn btn-default" asp-area="" asp-controller="Processo" asp-action="ProcessBetween">Processos no intervalor de:</a>
+        </span>
+        <span>
+            <a class="btn btn-default" asp-area="" asp-controller="Processo" asp-action="ProcessByStateClient">Processos no mesmo estado do cliente:</a>
+        </span>
+        <span>
+            <a class="btn btn-default" asp-area="" asp-controller="Processo" asp-action="ProcessesByAcronym">Processos por sigla:</a>
+        </span>
+    </div>
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Data de Criação</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Ativo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Numero)</td>
+                <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                <td>@Html.DisplayFor(modelItem => item.DataCriacao)</td>
+                <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+                <td>@Html.DisplayFor(modelItem => item.IsAtivo)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

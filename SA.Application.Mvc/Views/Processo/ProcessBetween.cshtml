@@ -1,0 +1,53 @@
+﻿@model IList<SA.Service.ViewModels.ProcessoViewModel>
+@{
+    ViewData["Title"] = "Processos dentro de um período";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <div class="form-group row">
+        <span>
+            <a class="btn btn-default" asp-area="" asp-controller="Processo" asp-action="Index">Lista de Processos</a>
+        </span>
+    </div>
+    <form asp-area="" asp-controller="Processo" asp-action="ProcessBetween">
+        <div class="form-group row">
+            <label>Data Inicio</label>
+            <input class="form-control" name="inicio" id="inicio" type="date" />
+        </div>
+        <div class="form-group row">
+            <label>Data Fim</label>
+            <input class="form-control" name="fim" id="fim" type="date" />
+        </div>
+        <div class="form-group row">
+            <button class="btn btn-default" type="submit">Pesquisar</button>
+        </div>
+    </form>
+    @if (Model != null)
+    {
+        <table class="table table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Data de Criação</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Ativo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Numero)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DataCriacao)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IsAtivo)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

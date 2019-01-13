@@ -1,0 +1,31 @@
+﻿@model IList<SA.Service.ViewModels.ClienteViewModel>
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <span>
+        <a class="btn btn-default" asp-area="" asp-controller="Cliente" asp-action="Create">Cadastrar</a>
+    </span>
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@Html.DisplayFor(modelItem=>item.Nome)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cnpj)</td>
+                <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

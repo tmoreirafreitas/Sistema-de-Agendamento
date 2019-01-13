@@ -1,0 +1,16 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Valor da soma dos Processos";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="container">
+    <div class="form-group row">
+        <span>
+            <a class="btn btn-default" asp-area="" asp-controller="Processo" asp-action="Index">Lista de Processos</a>
+        </span>
+    </div>
+    <label>Media: @string.Format("{0:C2}", ViewData["SomaAtivos"])</label>
+</div>
