@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SA.Domain.Interfaces.Services;
 using SA.Service.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SA.Application.Mvc.Controllers
 {
@@ -84,8 +84,6 @@ namespace SA.Application.Mvc.Controllers
         public async Task<IActionResult> ProcessBetween(DateTime inicio, DateTime fim)
         {
             var processos = await _processoService.GetProcessesBetween(inicio, fim);
-            if (processos != null)
-                ViewData["Exists"] = true;
             var processosViewModel = _mapper.Map<IList<ProcessoViewModel>>(processos);
             return View(processosViewModel);
         }
