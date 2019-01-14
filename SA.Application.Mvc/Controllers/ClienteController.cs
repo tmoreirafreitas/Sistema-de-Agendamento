@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -56,12 +56,12 @@ namespace SA.Application.Mvc.Controllers
             {
                 var cliente = _mapper.Map<Cliente>(clienteModel);
                 await _clienteService.Post(cliente);
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-            }
-            return RedirectToAction("Index");
+            }            
         }
 
         [HttpPost]

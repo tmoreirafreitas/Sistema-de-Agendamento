@@ -1,4 +1,4 @@
-﻿@model IList<SA.Service.ViewModels.ProcessoViewModel>
+@model IList<SA.Service.ViewModels.ProcessoViewModel>
 
 @{
     ViewData["Title"] = "Lista de Processos";
@@ -8,6 +8,9 @@
 
 <div class="container">
     <div class="form-group">
+    	<span>
+            <a class="btn btn-default" asp-area="" asp-controller="Processo" asp-action="Create">Criar Processo:</a>
+        </span>
         <span>
             <a class="btn btn-default" asp-area="" asp-controller="Processo" asp-action="SumActive">Soma</a>
         </span>

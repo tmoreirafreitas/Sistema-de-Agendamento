@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SA.Domain.Interfaces.Services;
 using SA.Service.ViewModels;
@@ -124,6 +124,34 @@ namespace SA.Application.Mvc.Controllers
         {
             var processos = await _processoService.GetProcessesByAcronym(sigla);
             return View(_mapper.Map<IList<ProcessoViewModel>>(processos));
+        }
+        
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(ProcessoViewModel processoViewModel)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            try
+            {
+                var clienteResult = await _clienteService.GetAsync(c => c.Cnpj.Equals(processoViewModel.Cliente.Cnpj));
+                if (clienteResult == null)
+                    return NotFound("o cnpj informado não existe na base de dados");
+                var processo = _mapper.Map<Processo>(processoViewModel);
+                processo.Cliente = clienteResult.FirstOrDefault();
+                await _processoService.Post(processo);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
